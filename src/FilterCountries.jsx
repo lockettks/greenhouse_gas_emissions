@@ -9,27 +9,27 @@ const options = [
   },
   {
     label: 'Brazil',
-    value: 'Brazil',
+    value: 'bra',
     emoji: '🇧🇷',
   },
   {
     label: 'China',
-    value: 'china',
+    value: 'chn',
     emoji: '🇨🇳',
   },
   {
     label: 'France',
-    value: 'france',
+    value: 'fra',
     emoji: '🇫🇷',
   },
   {
     label: 'India',
-    value: 'india',
+    value: 'ind',
     emoji: '🇮🇳',
   },
   {
     label: 'Japan',
-    value: 'japan',
+    value: 'jpn',
     emoji: '🇯🇵',
   },
 ]
