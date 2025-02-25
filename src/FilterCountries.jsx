@@ -1,4 +1,4 @@
-import { Card, Form, Select, Space } from 'antd'
+import { Form, Select, Space } from 'antd'
 import { useMemo } from 'react'
 
 const options = [
@@ -73,30 +73,28 @@ export const FilterCountries = () => {
   }
 
   return (
-    <Card title="Countries">
-      <Form.Item
-        label="Countries"
-        name={formItemName}
-        // getValueFromEvent={getValueFromEvent}
-        rules={[{ required: true, message: 'Please select at least one country' }]}
-      >
-        <Select
-          mode="multiple"
-          style={{ width: '100%' }}
-          placeholder="select at least one country"
-          onChange={handleChange}
-          allowClear
-          options={optionsWithAllOption}
-          optionRender={(option) => (
-            <Space>
-              <span role="img" aria-label={option.data.label}>
-                {option.data.emoji}
-              </span>
-              {option.data.label}
-            </Space>
-          )}
-        />
-      </Form.Item>
-    </Card>
+    <Form.Item
+      label="Countries"
+      name={formItemName}
+      // getValueFromEvent={getValueFromEvent}
+      rules={[{ required: true, message: 'Please select at least one country' }]}
+    >
+      <Select
+        mode="multiple"
+        style={{ width: '100%' }}
+        placeholder="select at least one country"
+        onChange={handleChange}
+        allowClear
+        options={optionsWithAllOption}
+        optionRender={(option) => (
+          <Space>
+            <span role="img" aria-label={option.data.label}>
+              {option.data.emoji}
+            </span>
+            {option.data.label}
+          </Space>
+        )}
+      />
+    </Form.Item>
   )
 }

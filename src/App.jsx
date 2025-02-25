@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Button, Col, ConfigProvider, Form, Grid, Layout, Row, Space, Tag, theme, Typography } from 'antd'
+import { useEffect, useState } from 'react'
+import { Button, Card, Col, ConfigProvider, Form, Grid, Layout, Row, Space, Tag, theme, Typography } from 'antd'
 import axios from 'axios'
 import { FilterCountries } from './FilterCountries.jsx'
 import { FilterDates } from './FilterDates.jsx'
@@ -11,6 +11,17 @@ const { useBreakpoint } = Grid
 function App() {
   const [form] = Form.useForm()
   const screens = useBreakpoint()
+  const [submittable, setSubmittable] = useState(false)
+  const values = Form.useWatch([], form)
+
+  useEffect(() => {
+    form
+      .validateFields({
+        validateOnly: true,
+      })
+      .then(() => setSubmittable(true))
+      .catch(() => setSubmittable(false))
+  }, [form, values])
 
   const {
     token: { colorBgContainer },
@@ -122,16 +133,18 @@ function App() {
           <Form name="filters" form={form} onFieldsChange={handleFieldsChange} onFinish={handleFinish}>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} style={{ border: '1px solid orange' }}>
               <Col xs={24} sm={12} md={12} lg={12} xl={10}>
-                <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-                  <FilterCountries />
-                  <FilterDates />
-                  <Space>
-                    <Button type="primary" htmlType="submit">
-                      View data
-                    </Button>
-                    <Button onClick={handleReset}>Clear</Button>
+                <Card title="Filters" style={{ width: '100%' }}>
+                  <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+                    <FilterCountries />
+                    <FilterDates />
+                    <Space>
+                      <Button type="primary" htmlType="submit" disabled={!submittable}>
+                        View data
+                      </Button>
+                      <Button onClick={handleReset}>Clear</Button>
+                    </Space>
                   </Space>
-                </Space>
+                </Card>
               </Col>
               <Col flex={'auto'}></Col>
             </Row>
