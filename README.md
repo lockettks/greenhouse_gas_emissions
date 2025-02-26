@@ -13,7 +13,7 @@ pnpm install
 ```
 
 2.  Start the development server:
-```aiignore
+```
 npm run dev
 # or
 yarn run dev
