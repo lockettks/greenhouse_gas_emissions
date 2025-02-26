@@ -3,6 +3,7 @@ import { Button, Card, Col, ConfigProvider, Form, Grid, Layout, Row, Space, Tag,
 import axios from 'axios'
 import { FilterCountries } from './FilterCountries.jsx'
 import { FilterDates } from './FilterDates.jsx'
+import { Visualization } from './Visualization.jsx'
 
 const { Title } = Typography
 const { Content, Footer } = Layout
@@ -69,7 +70,7 @@ function App() {
   const handleFieldsChange = (_, allFields) => {
     // Known issue: onFieldsChange is called three times
     // https://ant.design/components/form#why-does-onfieldschange-trigger-three-times-on-change-when-field-sets-rules
-    console.log(allFields)
+    // console.log(allFields)
   }
 
   const handleFinish = async (values) => {
@@ -129,11 +130,17 @@ function App() {
                 </Tag>
               ))}
           </>
-          <Title>Greenhouse Emissions</Title>
-          <Form name="filters" form={form} onFieldsChange={handleFieldsChange} onFinish={handleFinish}>
-            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} style={{ border: '1px solid orange' }}>
+          <Title>Greenhouse Gas Emissions</Title>
+          <Form
+            name="filters"
+            form={form}
+            layout="vertical"
+            onFieldsChange={handleFieldsChange}
+            onFinish={handleFinish}
+          >
+            <Row gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 16]} style={{ border: '1px solid orange' }}>
               <Col xs={24} sm={12} md={12} lg={12} xl={10}>
-                <Card title="Filters" style={{ width: '100%' }}>
+                <Card title="Filters" style={{ width: '100%', maxWidth: 370 }}>
                   <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
                     <FilterCountries />
                     <FilterDates />
@@ -146,7 +153,9 @@ function App() {
                   </Space>
                 </Card>
               </Col>
-              <Col flex={'auto'}></Col>
+              <Col flex={'auto'}>
+                <Visualization />
+              </Col>
             </Row>
           </Form>
         </Content>
