@@ -1,10 +1,13 @@
-import { ConfigProvider, Layout, Typography } from 'antd'
+import { ConfigProvider, Layout, theme, Typography } from 'antd'
 import { FiltersAndVisualizations } from './FiltersAndVisualizations.jsx'
 
 const { Title } = Typography
 const { Content } = Layout
 
 function App() {
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken()
   return (
     <ConfigProvider theme={{ token: { colorPrimary: '#00b96b' } }}>
       <Layout>
