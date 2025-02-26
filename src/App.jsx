@@ -1,16 +1,10 @@
-import { ConfigProvider, Grid, Layout, Tag, theme, Typography } from 'antd'
+import { ConfigProvider, Layout, Typography } from 'antd'
 import { FiltersAndVisualizations } from './FiltersAndVisualizations.jsx'
 
 const { Title } = Typography
-const { Content, Footer } = Layout
-const { useBreakpoint } = Grid
+const { Content } = Layout
 
 function App() {
-  const screens = useBreakpoint()
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken()
-
   return (
     <ConfigProvider theme={{ token: { colorPrimary: '#00b96b' } }}>
       <Layout>
@@ -21,22 +15,9 @@ function App() {
             padding: 24,
           }}
         >
-          <>
-            Current break point:{' '}
-            {Object.entries(screens)
-              .filter((screen) => !!screen[1])
-              .map((screen) => (
-                <Tag color="blue" key={screen[0]}>
-                  {screen[0]}
-                </Tag>
-              ))}
-          </>
-          <Title>Greenhouse Gas Emissions</Title>
+          <Title>Greenhouse Gas Emissions by Country and Year</Title>
           <FiltersAndVisualizations />
         </Content>
-        <Footer style={{ position: 'absolute', bottom: 0, width: '100%', textAlign: 'center' }}>
-          <div>© {new Date().getFullYear()} Kim Mathieu. All rights reserved.</div>
-        </Footer>
       </Layout>
     </ConfigProvider>
   )

@@ -36,36 +36,17 @@ const options = [
 
 const SELECT_ALL_OPTION = { label: 'Select All', value: 'selectAll' }
 
-const formItemName = 'countries'
-
-// function useSelectAllOption(options) {
-//   /** pass this to Form.Item's getValueFromEvent prop */
-//   const getValueFromEvent = useCallback(
-//     (value, selections) => {
-//       if (!selections?.length) return selections
-//       if (!selections?.some((s) => s.value === SELECT_ALL_OPTION.value)) {
-//         return selections
-//       }
-//       const labelInValue = typeof value[0]?.label === 'string'
-//       // if "Select All" option selected, set value to all options
-//       // also keep labelInValue in consideration
-//       return labelInValue ? options : options.map((o) => o.value)
-//     },
-//     [options],
-//   )
-//
-//   return [getValueFromEvent, optionsWithAllOption]
-// }
+const formItemName = 'countries' // TODO: Fix the warnings that this generates below
 
 export const FilterCountries = () => {
   const form = Form.useFormInstance()
 
   const optionsWithAllOption = useMemo(() => [SELECT_ALL_OPTION, ...options], [options])
-  // const [getValueFromEvent, optionsWithAllOption] = useSelectAllOption(options)
 
   const handleChange = (value) => {
     if (value.includes(SELECT_ALL_OPTION.value)) {
       form.setFieldValue(
+        // Ignore console warning here - it's not applicable
         formItemName,
         options.map((option) => option.value),
       )
@@ -76,13 +57,13 @@ export const FilterCountries = () => {
     <Form.Item
       label="Countries"
       name={formItemName}
-      // getValueFromEvent={getValueFromEvent}
       rules={[{ required: true, message: 'Please select at least one country' }]}
       style={{ flexGrow: 1 }}
     >
       <Select
         mode="multiple"
-        style={{ width: '100%' }}
+        style={{ width: '250px' }}
+        // style={{ width: '100%' }}
         placeholder="select at least one country"
         onChange={handleChange}
         allowClear
