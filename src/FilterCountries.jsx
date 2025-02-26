@@ -78,6 +78,7 @@ export const FilterCountries = () => {
       name={formItemName}
       // getValueFromEvent={getValueFromEvent}
       rules={[{ required: true, message: 'Please select at least one country' }]}
+      style={{ flexGrow: 1 }}
     >
       <Select
         mode="multiple"
