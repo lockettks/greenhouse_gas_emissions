@@ -1,3 +1,6 @@
+# App Assignment:
+Develop a web application that visualizes how greenhouse gas emissions have changed over time for the following countries: USA, Japan, China, India, France, and Brazil. The application should retrieve emissions data from the World Bank API and display it in a front-end application built using Ember, React, Vue or any other frameworks or libraries you prefer. It should also enable users to compare emissions across countries and years to gain insights.
+
 # To run this app locally:
 
 1.  Install dependencies:
