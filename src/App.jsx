@@ -18,7 +18,7 @@ function App() {
             padding: 24,
           }}
         >
-          <Title>Greenhouse Gas Emissions by Country and Year</Title>
+          <Title>Greenhouse Gas Emissions</Title>
           <FiltersAndVisualizations />
         </Content>
       </Layout>
