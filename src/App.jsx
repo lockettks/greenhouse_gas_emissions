@@ -1,45 +1,35 @@
-import { ConfigProvider, Grid, Layout, Tag, theme, Typography } from 'antd'
+import { ConfigProvider, Layout, Typography } from 'antd'
 import { FiltersAndVisualizations } from './FiltersAndVisualizations.jsx'
 import { Notes } from './Notes.jsx'
+import greenhouseSvg from './assets/greenhouse.svg'
 
 const { Title } = Typography
-const { Content } = Layout
-const { useBreakpoint } = Grid
+const { Content, Footer } = Layout
 
 function App() {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken()
-  const screens = useBreakpoint()
-  const isMobile = !screens.xl && !screens.lg && !screens.md
-
   return (
     <ConfigProvider theme={{ token: { colorPrimary: '#00b96b' } }}>
       <Layout>
         <Content
           style={{
-            // background: colorBgContainer,
             background: '#f5f5f5',
             minHeight: 280,
             padding: 24,
-            // maxWidth: '850px',
           }}
         >
-          <>
-            Current break point:{' '}
-            {Object.entries(screens)
-              .filter((screen) => !!screen[1])
-              .map((screen) => (
-                <Tag color="blue" key={screen[0]}>
-                  {screen[0]}
-                </Tag>
-              ))}
-          </>
-          <Title>Greenhouse Gas Emissions</Title>
+          <Title
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'start', gap: '10px', flexWrap: 'wrap' }}
+          >
+            <img src={greenhouseSvg} style={{ width: '100px' }} alt="Greenhouse icon" />
+            Greenhouse Gas Emissions
+          </Title>
           <FiltersAndVisualizations />
           <Notes />
         </Content>
       </Layout>
+      <Footer>
+        <div>© {new Date().getFullYear()} Kim Mathieu. All rights reserved.</div>
+      </Footer>
     </ConfigProvider>
   )
 }

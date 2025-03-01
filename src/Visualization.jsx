@@ -1,4 +1,4 @@
-import { Card } from 'antd'
+import { Card, Typography } from 'antd'
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -15,6 +15,8 @@ import {
 import { Line } from 'react-chartjs-2'
 import 'chartjs-adapter-date-fns'
 
+const { Link } = Typography
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -30,7 +32,6 @@ ChartJS.register(
 
 export const options = {
   responsive: true,
-  maintainAspectRatio: false,
   adapters: {
     type: 'time',
   },
@@ -87,9 +88,6 @@ export const options = {
   },
 }
 
-// TODO: Add this reference to the visualization
-// https://data.worldbank.org/indicator/EN.GHG.ALL.MT.CE.AR5
-
 // TODO: Add a diffusion-based cartogram visualization
 export const Visualization = ({ datasets }) => {
   const data = {
@@ -100,6 +98,9 @@ export const Visualization = ({ datasets }) => {
   return (
     <Card title="Visualization" style={{ width: '100%', height: '100%' }}>
       <Line options={options} data={data} style={{ width: '100%', height: '100%' }} />
+      <Link href={'https://data.worldbank.org/indicator/EN.GHG.ALL.MT.CE.AR5?locations=US&view=chart'} target="_blank">
+        <p>Source: World Bank</p>
+      </Link>
     </Card>
   )
 }

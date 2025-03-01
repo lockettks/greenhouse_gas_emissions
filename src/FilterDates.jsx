@@ -12,7 +12,6 @@ export const FilterDates = () => {
       name={formItemName}
       rules={[{ required: true, message: 'Please select a date range' }]}
       initialValue={[dayjs('1972'), dayjs('2022')]}
-      // style={{ display: 'flex', flexGrow: 0, flexWrap: 'wrap', border: '1px solid red' }}
     >
       <RangePicker picker="year" minDate={dayjs('1960')} maxDate={dayjs('2023')} style={{ maxWidth: '160px' }} />
     </Form.Item>

@@ -1,8 +1,6 @@
 import { Form, Grid, Select, Space } from 'antd'
 import { useMemo } from 'react'
 import { countriesConfig } from './countriesConfig.js'
-import Column from 'antd/es/table/Column.js'
-
 const { useBreakpoint } = Grid
 
 const SELECT_ALL_OPTION = { label: 'Select All', value: 'selectAll' }
@@ -30,15 +28,10 @@ export const FilterCountries = () => {
       label="Countries"
       name={formItemName}
       rules={[{ required: true, message: 'Please select at least one country' }]}
-      style={{ border: '1px solid green' }}
-      // style={{ flexGrow: 1 }}
     >
       <Select
         mode="multiple"
         style={screens.xs ? { minWidth: '150px' } : { width: '300px' }}
-        // style={{ width: screens.xs ? '100%' : '300px' }}
-        // style={{ width: '300px' }}
-        // style={{ width: '100%' }}
         placeholder="select at least one country"
         onChange={handleChange}
         allowClear
