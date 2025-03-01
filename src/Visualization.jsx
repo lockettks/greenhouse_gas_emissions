@@ -1,20 +1,32 @@
 import { Card } from 'antd'
 import {
+  CategoryScale,
   Chart as ChartJS,
+  Filler,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  SubTitle,
+  TimeScale,
+  Title,
+  Tooltip,
+} from 'chart.js'
+import { Line } from 'react-chartjs-2'
+import 'chartjs-adapter-date-fns'
+
+ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
   TimeScale,
+  SubTitle,
   Title,
   Tooltip,
   Filler,
   Legend,
-} from 'chart.js'
-import { Line } from 'react-chartjs-2'
-import 'chartjs-adapter-date-fns'
-
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, TimeScale, Title, Tooltip, Filler, Legend)
+)
 
 export const options = {
   responsive: true,
@@ -53,14 +65,21 @@ export const options = {
       display: true,
       text: 'Greenhouse Gas Emissions',
     },
+    subtitle: {
+      display: true,
+      text: 'Click on a country to toggle its visibility and zoom in/out',
+    },
     tooltip: {
       title: {
-        // TODO: Fix the tooltip title so that only the year is displayed
         display: true,
       },
       callbacks: {
         label: function (tooltipItem) {
           return `${tooltipItem.dataset.label}: ${tooltipItem.raw.y.toLocaleString()} Mt CO2e`
+        },
+        title: function (tooltipItem) {
+          // TODO: It'd be robust to get the date by parsing instead
+          return tooltipItem[0].dataset.data[0].x
         },
       },
     },

@@ -1,38 +1,6 @@
 import { Form, Select, Space } from 'antd'
 import { useMemo } from 'react'
-
-const options = [
-  {
-    label: 'USA',
-    value: 'usa',
-    emoji: '🇺🇸',
-  },
-  {
-    label: 'Brazil',
-    value: 'bra',
-    emoji: '🇧🇷',
-  },
-  {
-    label: 'China',
-    value: 'chn',
-    emoji: '🇨🇳',
-  },
-  {
-    label: 'France',
-    value: 'fra',
-    emoji: '🇫🇷',
-  },
-  {
-    label: 'India',
-    value: 'ind',
-    emoji: '🇮🇳',
-  },
-  {
-    label: 'Japan',
-    value: 'jpn',
-    emoji: '🇯🇵',
-  },
-]
+import { countriesConfig } from './countriesConfig.js'
 
 const SELECT_ALL_OPTION = { label: 'Select All', value: 'selectAll' }
 
@@ -41,14 +9,14 @@ const formItemName = 'countries' // TODO: Fix the warnings that this generates b
 export const FilterCountries = () => {
   const form = Form.useFormInstance()
 
-  const optionsWithAllOption = useMemo(() => [SELECT_ALL_OPTION, ...options], [options])
+  const optionsWithAllOption = useMemo(() => [SELECT_ALL_OPTION, ...countriesConfig], [countriesConfig])
 
   const handleChange = (value) => {
     if (value.includes(SELECT_ALL_OPTION.value)) {
       form.setFieldValue(
         // Ignore console warning here - it's not applicable
         formItemName,
-        options.map((option) => option.value),
+        countriesConfig.map((option) => option.value),
       )
     }
   }
