@@ -30,6 +30,7 @@ ChartJS.register(
 
 export const options = {
   responsive: true,
+  maintainAspectRatio: false,
   adapters: {
     type: 'time',
   },

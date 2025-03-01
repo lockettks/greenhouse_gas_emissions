@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Button, Card, Form, Row, Space } from 'antd'
+import { Button, Card, Form, Grid, Row, Space } from 'antd'
 import axios from 'axios'
 import { FilterCountries } from './FilterCountries.jsx'
 import { FilterDates } from './FilterDates.jsx'
 import { Visualization } from './Visualization.jsx'
 import { transformData } from './transformData.js'
+
+const { useBreakpoint } = Grid
 
 export const FiltersAndVisualizations = () => {
   const [form] = Form.useForm()
@@ -12,6 +14,7 @@ export const FiltersAndVisualizations = () => {
   const [isLoading, setIsLoading] = useState(false)
   const values = Form.useWatch([], form)
   const [chartData, setChartData] = useState(null)
+  const screens = useBreakpoint()
 
   // TODO: Test this logic
   useEffect(() => {
@@ -65,13 +68,13 @@ export const FiltersAndVisualizations = () => {
   }
 
   return (
-    <Space direction={'vertical'} size="large">
+    <Space direction={'vertical'} size="large" style={{ width: '100%' }}>
       <Row>
         <Card title="Filters" style={{ width: '100%', minHeight: '170px' }}>
           <Form
             name="filters"
             form={form}
-            layout="inline"
+            layout={screens.xs ? 'vertical' : 'inline'}
             onFinish={handleFinish}
             style={{ alignItems: 'flex-start', rowGap: '10px' }}
           >
